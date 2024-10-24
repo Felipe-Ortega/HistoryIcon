@@ -34,14 +34,16 @@ var indicePergunta = 0;
 // Armazenando as respostas
 var respostasPolitica = [];
 
-var imagemIcone = "images/JC.png";
-var nomeIcone = "Julio Cesar";
-var textoIcone =
-  "foi um dos mais importantes líderes da história de Roma, conhecido por seu brilhantismo militar e ambição política. General habilidoso, conquistou a Gália, expandindo significativamente o território romano. Sua campanha vitoriosa o tornou extremamente popular entre os soldados e o povo, mas criou tensões com o Senado.Em 49 a.C., desafiou a autoridade senatorial ao atravessar o rio Rubicão com seu exército, iniciando uma guerra civil que culminou com sua ascensão como ditador vitalício. Durante seu governo, implementou várias reformas, como a reorganização do calendário, que deu origem ao calendário juliano.No entanto, seu crescente poder e título de ditador despertaram o temor de que ele se tornaria um rei, algo inaceitável para os romanos. Isso resultou em sua morte, assassinado em 44 a.C. por membros do Senado, num complô liderado por Bruto e Cássio. Sua morte marcou o fim da República e abriu caminho para o Império Romano.";
 function nextQuestion(id, id2, id3, id4) {
   defineQuestao(id, id2, id3, id4);
 }
+
 function defineQuestao(id, id2, id3, id4) {
+  var imagemIcone = "";
+  var nomeIcone = "";
+  var textoIcone = "";
+  var iconesPolitica = "";
+  const icone = document.getElementsByClassName("section_pergunta")[0];
   const pergunta = document.getElementById("section_pergunta");
   const bt = document.getElementById(id);
   const bt2 = document.getElementById(id2);
@@ -50,23 +52,66 @@ function defineQuestao(id, id2, id3, id4) {
   var valor = "";
   if (bt.className == "butonPressed") {
     valor = bt.value;
-    if (indicePergunta == 2 && valor == "JC") {
-      pergunta.innerHTML = iconesPolitica[0];
+    if (indicePergunta == 2) {
+      indicePergunta++;
+      imagemIcone = "images/JC.png";
+      nomeIcone = "Julio Cesar";
+      textoIcone =
+        "foi um dos mais importantes líderes da história de Roma, conhecido por seu brilhantismo militar e ambição política. General habilidoso, conquistou a Gália, expandindo significativamente o território romano. Sua campanha vitoriosa o tornou extremamente popular entre os soldados e o povo, mas criou tensões com o Senado.Em 49 a.C., desafiou a autoridade senatorial ao atravessar o rio Rubicão com seu exército, iniciando uma guerra civil que culminou com sua ascensão como ditador vitalício. Durante seu governo, implementou várias reformas, como a reorganização do calendário, que deu origem ao calendário juliano.No entanto, seu crescente poder e título de ditador despertaram o temor de que ele se tornaria um rei, algo inaceitável para os romanos. Isso resultou em sua morte, assassinado em 44 a.C. por membros do Senado, num complô liderado por Bruto e Cássio. Sua morte marcou o fim da República e abriu caminho para o Império Romano.";
+      icone.style.backgroundImage = "url(images/background_pergunta.jpg)";
+      icone.style.color = "#f5f1e7";
     } else {
       indicePergunta++;
       pergunta.innerHTML = perguntasPoliticas[indicePergunta];
     }
   } else if (bt2.className == "butonPressed") {
     valor = bt2.value;
-    indicePergunta++;
+    if (indicePergunta == 2) {
+      icone.style.backgroundImage = "url(images/background_pergunta.jpg)";
+      icone.style.color = "#f5f1e7";
+      pergunta.innerHTML = iconesPolitica[1];
+    } else {
+      indicePergunta++;
+      pergunta.innerHTML = perguntasPoliticas[indicePergunta];
+    }
   } else if (bt3.className == "butonPressed") {
     indicePergunta++;
     valor = bt3.value;
+    if (indicePergunta == 2) {
+      icone.style.backgroundImage = "url(images/background_pergunta.jpg)";
+      icone.style.color = "#f5f1e7";
+      pergunta.innerHTML = iconesPolitica[2];
+    } else {
+      indicePergunta++;
+      pergunta.innerHTML = perguntasPoliticas[indicePergunta];
+    }
   } else if (bt4.className == "butonPressed") {
     indicePergunta++;
     valor = bt4.value;
+    if (indicePergunta == 2) {
+      icone.style.backgroundImage = "url(images/background_pergunta.jpg)";
+      icone.style.color = "#f5f1e7";
+      pergunta.innerHTML = iconesPolitica[3];
+    } else {
+      indicePergunta++;
+      pergunta.innerHTML = perguntasPoliticas[indicePergunta];
+    }
   } else {
     alert("Escolha alguma opção");
+  }
+  iconesPolitica = `<div class="section-davinci">
+                <div class="container-sec">
+                  <img src="${imagemIcone}" alt="" style="width:350px"/>
+                  <div class="sobre">
+                    <div>
+                      <h1 style="font-size: 50px;">${nomeIcone}</h1>
+                      <p>${textoIcone}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>`;
+  if (indicePergunta == 3) {
+    pergunta.innerHTML = iconesPolitica;
   }
 }
 
@@ -78,19 +123,7 @@ function backQuestion(id, id2, id3, id4) {
   indicePergunta--;
   defineVoltaQuestao(id, id2, id3, id4);
 }
-var iconesPolitica = [
-  `<div class="section-davinci">
-              <div class="container-sec">
-                <img src="${imagemIcone}" alt="" />
-                <div class="sobre">
-                  <div>
-                    <h1>${nomeIcone}</h1>
-                    <p>${textoIcone}</p>
-                  </div>
-                </div>
-              </div>
-            </div>`,
-];
+
 var perguntasPoliticas = [
   `<div class="pergunta">
                     <h3>Qual área te interessa mais?</h3>
